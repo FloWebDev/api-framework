@@ -1,0 +1,7 @@
+.active {
+    font-weight: bold;
+}
+
+.active a {
+    color: #CCC !important;
+}

@@ -16,6 +16,7 @@ class ErrorController extends CoreController {
         $this->assign('h1Title', 'Erreur 404 - Page introuvable');
         $this->assign('pageTitle', 'Erreur 404 - Page introuvable');
         $this->assign('pageDescription', 'Erreur 404 - Page introuvable');
+        $this->assign('h2Title', 'Erreur 404 - Page introuvable');
         $this->assign('pageKeywords', 'erreur 404');
         $this->showView('error/error404');
     }

@@ -23,10 +23,10 @@ class Captcha {
         // Création de l'image
         $img = imagecreatetruecolor(200, 60);
         // Lien vers le fichier font
-        $font = __DIR__ . '/../../public/asset/font/destroy.ttf';
+        $font = __DIR__ . '/../../public/assets/fonts/destroy.ttf';
 
         // RGB colors
-        $bg = imagecolorallocate($img, 230, 70, 60);
+        $bg = imagecolorallocate($img, 115, 190, 130);
         imagefill($img, 0, 0, $bg);
         $textcolor = imagecolorallocate($img, 255, 255, 255);
         $this->imagettftext_cr($img, 20, 0, 100, 24, $textcolor, $font, $captchaCode);

@@ -1,112 +1,242 @@
+                    <div class="doc-content col-md-9 col-12 order-1">
+                        <div class="content-inner">
+                            <section id="getting-started-section" class="doc-section">
+                                <h2 class="section-title">Getting Started</h2>
+                                <div class="section-block">
+                                    <p>Cette API a pour objectif de collecter et mettre gratuitement à dispositon des développeurs des blagues, devinettes, proverbes et toutes autres données humoristiques.<br>L'API vise également à initier les développeurs web juniors quant à l'utilisation d'une API REST et l'authentification par token (ici, par Json Web Token).</p>
+                                    <a href="/token" class="btn btn-green"><i class="fas fa-medal"></i> Demander un token</a>
+                                </div>
+                            </section><!--//doc-section-->
+                            <section id="token-jwt-section" class="doc-section">
+                                <h2 class="section-title">Json Web Token</h2>
+                                <div id="step1"  class="section-block">
+                                    <h3 class="block-title">&Eacute;tape une</h3>
+                                    <p>Pour utiliser l'API, vous devez au préalable demander l'obtention d'un token (Json Web Token).<br>La procédure est simple, rapide et <strong><u>sans inscription</u></strong>. <a href="/token" class="text-green"><i class="fas fa-external-link-square-alt"></i></a></p>
+                                </div><!--//section-block-->
+                                <div id="step2"  class="section-block">
+                                    <h3 class="block-title">&Eacute;tape deux</h3>
+                                    <p>Le token envoyé par email a une validité de <strong><u>48 heures</u></strong>.<br>
+                                    Ce JWT doit ensuite être renseigné dans l'en-tête d'autorisation HTTP des requêtes le nécessitant.
+                                    </p>
+                                    <div class="code-block">
+                                        <h6>En-tête HTTP d'autorisation :</h6>
+                                        <p><code>Authorization: Bearer &#8249;your_token&#8250;</code></p>
+                                    </div><!--//code-block-->
+                                </div><!--//section-block-->
+                                <div id="step3"  class="section-block">
+                                    <h3 class="block-title">&Eacute;tape trois</h3>
+                                    <p>Il est possible d'automatiser la demande d'obtention d'un token afin d'en faciliter le renouvellement.<br>
+                                    Pour cela, reportez-vous aux tableaux des routes de l'API. L'une d'elles est prévue à cet effet.
+                                    </p>
+                                    <div class="code-block">
+                                        <h6>Route API token :</h6>
+                                        <p><code>/api/token</code></p>
+                                    </div><!--//code-block-->
+                                </div><!--//section-block-->
+                            </section><!--//doc-section-->
+                            
+                            <section id="routes-section" class="doc-section">
+                                <h2 class="section-title">Routes API</h2>
+                                <div class="section-block">
+                                    <div class="table-responsive">
+                                        <table class="table table-striped">
+                                            <thead>
+                                                <tr>
+                                                <th scope="col">Méthode</th>
+                                                <th scope="col">Route</th>
+                                                <th scope="col">Paramètres</th>
+                                                <th scope="col">Valeurs</th>
+                                                <th scope="col">JWT</th>
+                                                <th scope="col">Description</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                <th scope="row"><span class="badge badge-success">GET</span></th>
+                                                <td style="width: 150px;"><code>/api/get</code></td>
+                                                <td><b>limit</b><br><b>category</b></td>
+                                                <td>Min : 1 - Max : 2500<br>blague, chucknorrisfact, devinette, proverbe</td>
+                                                <td><i class="fas fa-check text-danger"></i></td>
+                                                <td>Permet de récupérer au format Json un ensemble d'enregistrements par limite et par types.</td>
+                                                </tr>
+                                                <tr>
+                                                <th scope="row"><span class="badge badge-success">GET</span></th>
+                                                <td style="width: 150px;"><code>/api/find</code></td>
+                                                <td><b>id</b></td>
+                                                <td>identifiant de l'enregistrement recherché</td>
+                                                <td><i class="fas fa-check text-danger"></i></td>
+                                                <td>Permet de récupérer un enregistrement en fonction de son identifiant (id).</td>
+                                                </tr>
+                                                <tr>
+                                                <th scope="row"><span class="badge badge-success">GET</span></th>
+                                                <td><code>/api/random</code></td>
+                                                <td>-</td>
+                                                <td>-</td>
+                                                <td></td>
+                                                <td>Permet d'obtenir une donnée aléatoire sur un échantillon restreint. Il y a une forte probabilité de redondance.</td>
+                                                </tr>
+                                                <tr>
+                                                <th scope="row"><span class="badge badge-success">GET</span></th>
+                                                <td><code>/api/get/random</code></td>
+                                                <td><b>limit</b><br><b>category</b></td>
+                                                <td>Min : 1 - Max : 50<br>blague, chucknorrisfact, devinette, proverbe</td>
+                                                <td><i class="fas fa-check text-danger"></i></td>
+                                                <td>Permet d'obtenir une ou plusieurs données aléatoires. Il est possible de préciser le type de données souhaitées.</td>
+                                                </tr>
+                                                <tr>
+                                                <th scope="row"><span class="badge badge-danger">POST</span></th>
+                                                <td><code>/api/token</code></td>
+                                                <td>token</td>
+                                                <td>Json Web Token précédemment généré (expiré ou non).</td>
+                                                <td></td>
+                                                <td>Permet d'obtenir un token sans passer par le formulaire d'obtention. Le token fourni a une durée de validité de 48 heures.<br>Il est donc possible d'automatiser l'obtention d'un token en utilisant cette route, puis en le renseignant dans l'en-tête d'autorisation HTTP pour les requêtes suivantes.</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div><!-- table-responsive -->
 
+                                    <div class="callout-block callout-success">
+                                        <div class="icon-holder">
+                                            <i class="fas fa-thumbs-up"></i>
+                                        </div><!--//icon-holder-->
+                                        <div class="content">
+                                            <h4 class="callout-title">Faites connaître l'API</h4>
+                                            <p>Vous pouvez utliser l'un de ces liens <a href="https://mothereff.in/html-entities" target="_blank"><i class="fab fa-facebook-square"></i> Facebook</a> ou <a href="https://mothereff.in/html-entities" target="_blank"><i class="fab fa-twitter-square"></i> Twitter</a> pour partager le site sur les réseaux sociaux.</p>
+                                        </div><!--//content-->
+                                    </div>
+                                    
+                                </div><!--//section-block-->
+                                <div id="html" class="section-block">
+                            </section><!--//doc-section-->
+                                   
+                            <section id="requete-section" class="doc-section">
+                                <h2 class="section-title">Requête vers l'API</h2>
+                                    <!--<div class="code-block">-->
+                                <div id="php-request" class="section-block">
+                                    <div class="code-block">
+                                        <h6>Exemple d'utilisation avec PHP Curl</h6>
+                                        <pre><code class="language-php">&lt;?php 
 
-<div class="row card text-white bg-dark mb-3 col-12 mx-auto py-3">
+$url = "https://example.com/api/get";
+$params = "?limit=20&category=blague";
 
-    <div class="card text-white bg-secondary mb-3 col-12 mx-1">
-        <div class="card-header text-dark">
-            <h2>
-                <?php if(!empty($h2Title)) : ?>
-                <?= $h2Title; ?>
-                <?php else : ?>
-                <?= CFG_H2_TITLE; ?>
-                <?php endif; ?>
-            </h2>
-        </div>
+$jwt = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI1ZGRlY2VmMGE4ZTNkIiwiZXhwIjoiMjAxOS0xMS0yOSAyMDozMDo1NiIsInRlc3QiOiIrXC89In0.bZhb_fgx2IHj-M6Lbr3B-CyFoVZPzvtFzbpBsrBsKnzQFSomB-UFCTXZaNolcIWvslsvorq_YLjTgMZRpfSsRQ";
 
-        <div class="card-body">
-            <h5 class="card-title text-dark">Usage</h5>
-            <p class="card-text">Cette API a vocation de collecter et mettre gratuitement à dispositon des développeurs des données relatives à l'humour (blagues, devinettes, proverbes).<br>L'API a également pour but d'initier d'éventuels développeurs web juniors sur l'utilisation d'une API et l'authentification par token.</p>
-        </div>
+$headers = [
+    "Content-Type: application/json",
+    "Authorization: Bearer " . $jwt
+];
 
+$curl = curl_init();
+curl_setopt($curl, CURLOPT_URL, $url . $params);
+curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+curl_setopt($curl, CURLOPT_TIMEOUT, 60);
+curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+curl_setopt($curl, CURLOPT_USERAGENT, $_SERVER["HTTP_USER_AGENT"]);
+$jsonResponse = curl_exec($curl);
+$response = json_decode($jsonResponse, 1);
+curl_close($curl);
 
-        <div class="card-body">
-            <h5 class="card-title text-dark">Token - Json Web Token</h5>
-            <p class="card-text">Pour utiliser l'API, vous devez au préalable demander l'obtention d'un token (Json Web Token).<br>La procédure est simple, rapide et <strong><u>sans inscription</u></strong>.<br><a href="/token" class="text-danger">Obtenir un token.</a><br>Le token fourni a une validité de <strong class="text-dark"><u>48 heures</u></strong>. Il est possible d'automatiser la demande d'obtention d'un token afin d'en faciliter le renouvellement.<br>Le token fourni doit être renseigné dans l'en-tête d'autorisation HTTP des requêtes le nécessitant :<br><code class="bg-dark p-1">Authorization: Bearer &#8249;token&#8250;</code></p>
-        </div>
+echo "&lsaquo;pre&rsaquo;";
+var_dump($response);
+echo "&lsaquo;/pre&rsaquo;";
 
+?&gt;</code></pre>
+                                    </div><!--//code-block-->
+                                </div><!--//section-block-->
+                        </section>
 
-        <div class="card-body">
-            <h5 class="card-title text-dark">Routes à utiliser</h5>
-            <p class="card-text">
-                <div class="table-responsive">
-                    <table class="table table-dark">
-                        <thead>
-                            <tr>
-                            <th scope="col">Méthode</th>
-                            <th scope="col">Route</th>
-                            <th scope="col">Paramètres</th>
-                            <th scope="col">Valeurs</th>
-                            <th scope="col">JWT</th>
-                            <th scope="col">Description</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                            <th scope="row"><span class="badge badge-success">GET</span></th>
-                            <td style="width: 150px;"><code>/api/get</code></td>
-                            <td><b>limit</b><br><b>category</b></td>
-                            <td>Min : 1 - Max : 2500<br>blague, chucknorrisfact, devinette, proverbe</td>
-                            <td><i class="fas fa-check text-danger"></i></td>
-                            <td>Permet de récupérer au format Json un ensemble d'enregistrements par limite et par types.</td>
-                            </tr>
-                            <tr>
-                            <th scope="row"><span class="badge badge-success">GET</span></th>
-                            <td style="width: 150px;"><code>/api/find</code></td>
-                            <td><b>id</b></td>
-                            <td>identifiant de l'enregistrement recherché</td>
-                            <td><i class="fas fa-check text-danger"></i></td>
-                            <td>Permet de récupérer un enregistrement en fonction de son identifiant (id).</td>
-                            </tr>
-                            <tr>
-                            <th scope="row"><span class="badge badge-success">GET</span></th>
-                            <td><code>/api/random</code></td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td></td>
-                            <td>Permet d'obtenir une donnée aléatoire sur un échantillon restreint. Il y a une forte probabilité de redondance.</td>
-                            </tr>
-                            <tr>
-                            <th scope="row"><span class="badge badge-success">GET</span></th>
-                            <td><code>/api/get/random</code></td>
-                            <td><b>limit</b><br><b>category</b></td>
-                            <td>Min : 1 - Max : 50<br>blague, chucknorrisfact, devinette, proverbe</td>
-                            <td><i class="fas fa-check text-danger"></i></td>
-                            <td>Permet d'obtenir une ou plusieurs données aléatoires. Il est possible de préciser le type de données souhaitées.</td>
-                            </tr>
-                            <tr>
-                            <th scope="row"><span class="badge badge-danger">POST</span></th>
-                            <td><code>/api/token</code></td>
-                            <td>token</td>
-                            <td>Json Web Token précédemment généré (expiré ou non).</td>
-                            <td></td>
-                            <td>Permet d'obtenir un token sans passer par le formulaire d'obtention. Le token fourni a une durée de validité de 48 heures.<br>Il est donc possible d'automatiser l'obtention d'un token en utilisant cette route, puis en le renseignant dans l'en-tête d'autorisation HTTP pour les requêtes suivantes.</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </p>
-        </div>
+                            <section id="response-section" class="doc-section">
+                                <h2 class="section-title">Response</h2>
+                                    <!--<div class="code-block">-->
+                                <div id="json-response" class="section-block">
+                                    <div class="code-block">
+                                        <h6>Exemple de retour en Json</h6>
+                                        <pre><code class="language-json">array(3) {
+  [0]=>
+  array(3) {
+    ["id"]=>
+    string(3) "115"
+    ["content"]=>
+    string(55) "D'où viennent les gens les plus dangereux ?
+D’angers"
+    ["category"]=>
+    string(6) "Blague"
+  }
+  [1]=>
+  array(3) {
+    ["id"]=>
+    string(3) "114"
+    ["content"]=>
+    string(74) "Où irait Voldemort s'il décidait de jouer de la trompette ?
+À Jazzkaban"
+    ["category"]=>
+    string(6) "Blague"
+  }
+  [2]=>
+  array(3) {
+    ["id"]=>
+    string(3) "113"
+    ["content"]=>
+    string(104) "Pourquoi est-ce que les éoliennes n'ont pas de copain ?
+Parce qu’elles se prennent toujours des vents"
+    ["category"]=>
+    string(6) "Blague"
+  }
+}</code></pre>
+                                    </div><!--//code-block-->
+                                </div><!--//section-block-->
 
-
-        <div class="card-body">
-            <h5 class="card-title text-dark">Exemple de "response"</h5>
-            <p class="card-text">
-                Tous les retours de l'API sont effectués au format <strong>JSON<strong>.
-<pre class="text-white bg-dark p-2">
-[
+                                <div id="php-response" class="section-block">
+                                    <div class="code-block">
+                                        <h6>Exemple de retour en PHP (après json_decode)</h6>
+                                        <pre><code class="language-php">[
   {
-    "id": 1,
-    "content": "C'est une blonde qui vient d'écraser un poulet. Elle se rend à la ferme la plus proche et dit au fermier : Je viens d'écraser un poulet, je suis désolée, vraiment... - Bah c'est pas grave ma bonne dame, vous z'avez qu'à le manger. - D'accord mais qu'est-ce que je fais de sa moto ?",
-    "categorie": "Blague"
+    "id": 212,
+    "content": "Un jour, Chuck Norris a fait la blague de \"j'ai volé ton nez\" à Mickael Jackson...",
+    "categorie": "Chuck Norris Fact"
   },
   {
-    "id": 2,
-    "content": "Quel est le meilleur électeur ? Un soutien gorge car il soutient la droite et la gauche",
+    "id": 112,
+    "content": "Comment appelle-t-on un combat entre un petit pois et une carotte ?\nUn bon duel",
     "categorie": "Blague"
   }
-]
-</pre>             
-            </p>
-        </div>
+]</code></pre>
+                                    </div><!--//code-block-->
+                                </div><!--//section-block-->
+                            </section><!--//doc-section-->
 
-</div>
+   
+                            
+
+                        </div><!--//content-inner-->
+                    </div><!--//doc-content-->
+                    <div class="doc-sidebar col-md-3 col-12 order-0 d-none d-md-flex">
+                        <div id="doc-nav" class="doc-nav">
+	                        
+	                            <nav id="doc-menu" class="nav doc-menu flex-column sticky">
+	                                <a class="nav-link scrollto" href="#getting-started-section">Getting Started</a>
+	                                <a class="nav-link scrollto" href="#token-jwt-section">Token - Json Web Token</a>
+                                    <nav class="doc-sub-menu nav flex-column">
+                                        <a class="nav-link scrollto" href="#step1">&Eacute;tape Une</a>
+                                        <a class="nav-link scrollto" href="#step2">&Eacute;tape Deux</a>
+                                        <a class="nav-link scrollto" href="#step3">&Eacute;tape Trois</a>
+                                    </nav><!--//nav-->
+                                    <a class="nav-link scrollto" href="#routes-section">Routes API</a>
+                                    <a class="nav-link scrollto" href="#requete-section">Requête vers l'API</a>
+                                    <nav class="doc-sub-menu nav flex-column">
+                                        <a class="nav-link scrollto" href="#php-request">Exemple avec PHP Curl</a>
+                                    </nav><!--//nav-->
+                                    <a class="nav-link scrollto" href="#response-section">Response</a>
+                                    <nav class="doc-sub-menu nav flex-column">
+                                        <a class="nav-link scrollto" href="#json-response">Exemple de retour en Json</a>
+                                        <a class="nav-link scrollto" href="#php-response">Exemple de retour en PHP</a>
+                                    </nav><!--//nav-->
+	                            </nav><!--//doc-menu-->
+	                        
+                        </div>
+                    </div><!--//doc-sidebar-->
+ 
+        
+
+    

@@ -231,6 +231,7 @@ class DefaultController extends CoreController {
 
         $this->assign('pageTitle', 'Générer un token JWT');
         $this->assign('pageDescription', 'Générer un token JWT pour bénéficier de tous les avantages d\'API Entity');
+        $this->assign('h2Title', 'Demande d\'un JWT');
         $this->assign('captcha', $captcha);
         $this->showView('token');
     }
