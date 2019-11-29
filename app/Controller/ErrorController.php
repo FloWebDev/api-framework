@@ -13,12 +13,21 @@ class ErrorController extends CoreController {
     public function error404Html() {
         header("HTTP/1.1 404 Not Found");
 
-        $this->assign('h1Title', 'Erreur 404 - Page introuvable');
-        $this->assign('pageTitle', 'Erreur 404 - Page introuvable');
-        $this->assign('pageDescription', 'Erreur 404 - Page introuvable');
-        $this->assign('h2Title', 'Erreur 404 - Page introuvable');
-        $this->assign('pageKeywords', 'erreur 404');
-        $this->showView('error/error404');
+        $params = [
+            'h1Title' => '404',
+            'h2Title' => 'Erreur 404 - Page introuvable',
+            'pageTitle' => 'Erreur 404 - Page introuvable',
+            'pageDescription' => 'Erreur 404 - Page introuvable',
+            'pageKeywords' => 'erreur 404'
+        ];
+
+        // Variables transmises à la vue
+        foreach($params as $key => $value) {
+            $$key = $value;
+        }
+
+        // Récupération de la vue 404 avec Header et Footer spécifiques
+        require __DIR__ . '/../views/error/error404.php';
     }
     
     /**

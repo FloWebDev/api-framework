@@ -4,7 +4,7 @@
                             <section id="getting-started-section" class="doc-section">
                                 <h2 class="section-title">Json Web Token <i class="fas fa-question"></i></h2>
                                 <div class="section-block">
-                                    <p class="card-text">JSON Web Token (JWT) est un standard ouvert. Il permet l'échange sécurisé de jetons (tokens) entre plusieurs parties. Cette sécurité de l’échange se traduit par la vérification de l’intégrité des données à l’aide d’une signature numérique. En pratique, l'utilisation d'un JWT est très (très très) simple.</p>
+                                    <p class="card-text">Le Json Web Token (JWT) est un standard ouvert. Il permet l'échange sécurisé de jetons (tokens) entre plusieurs parties. Cette sécurité de l’échange se traduit par la vérification de l’intégrité des données à l’aide d’une signature numérique. En pratique, l'utilisation d'un JWT est très (très très) simple.</p>
 
                                     <div class="dropdown text-center">
                                         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -44,7 +44,7 @@
 </div>
 
 <div class="form-group px-3">
-  <input type="submit" class="btn btn-dark" value="Demande de Token">
+  <input type="submit" class="btn btn-dark" value="Valider">
 </div>
 
 </form>

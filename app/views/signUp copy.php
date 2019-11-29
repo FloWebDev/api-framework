@@ -7,10 +7,9 @@
   <div class="form-group">
     <label for="username">Identifiant (*)</label>
     <input type="text" class="form-control" id="username" placeholder="Idenfitiant" name="username"
-    value="<?php if(!empty($_SESSION['username'])) : ?>
-<?= $_SESSION['username']; ?>
-<?php unset($_SESSION['username']); ?>
-<?php endif; ?>">
+    value="<?= !empty($_SESSION['username']) ? $_SESSION['username'] : ''; ?>">
+    <!-- Suppression username en session -->
+    <?php unset($_SESSION['username']); ?>
     <small id="username" class="form-text text-muted">Ne communiquez jamais votre identifiant ou mot de passe à un tiers.</small>
   </div>
 

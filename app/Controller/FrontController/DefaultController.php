@@ -6,7 +6,7 @@ use App\Util\Captcha;
 use App\Model\EntityModel;
 use App\Util\JwtService;
 use App\Controller\CoreController;
-
+use App\Model\CategoryModel;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
@@ -16,9 +16,27 @@ class DefaultController extends CoreController {
      * Permet d'afficher la page d'accueil
      */
     public function homePage() {
+        $categoryInstance = new CategoryModel();
+        $categories = $categoryInstance->getAll();
+
+        // Récupération et formatage de toutes les listes de catégories
+        // afin de l'inscrire dans la documentation
+        $formatCategoryList = '';
+        if(!empty($categories) && is_array($categories)) {
+            foreach($categories as $index => $category) {
+                if($index !== (count($categories) - 1)) {
+                    $formatCategoryList .= $category->getName() . ', ';
+                } else {
+                    $formatCategoryList .= $category->getName();
+                }
+            }
+            unset($category);
+        }
+        
         $this->assign('pageTitle', 'Page d\'accueil de cette API');
         $this->assign('pageDescription', 'Page d\'accueil de cette API');
         $this->assign('h2Title', 'Documentation API');
+        $this->assign('categoryList', $formatCategoryList);
         $this->showView('homePage');
     }
 

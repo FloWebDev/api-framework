@@ -9,19 +9,19 @@
     <meta name="description" content="<?= !empty($pageDescription) ? $pageDescription : 'Bienvenue sur Humour API'; ?>"> 
     <meta name="keywords" content="<?= !empty($pageKeywords) ? $pageKeywords : 'humour, blague, devinette, chuck norris fact, api, entity api, blague, fr, français, blague française'; ?>">
     <meta name="author" content="">    
-    <link rel="shortcut icon" href="favicon.ico">  
+    <link rel="shortcut icon" href="/favicon.ico">  
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
 
     <!--<script defer src="https://use.fontawesome.com/releases/v5.8.2/js/all.js" integrity="sha384-DJ25uNYET2XCl5ZF++U8eNxPWqcKohUUBUpKGlNLMchM7q4Wjg2CUpjHLaL8yYPH" crossorigin="anonymous"></script>-->
     <!-- Global CSS -->
-    <link rel="stylesheet" href="assets/css/bootstrap/bootstrap.min.css">   
+    <link rel="stylesheet" href="/assets/css/bootstrap/bootstrap.min.css">   
     <!-- Plugins CSS -->    
-    <link rel="stylesheet" href="assets/css/prism/prism.css">
-    <link rel="stylesheet" href="assets/css/elegant_font/style.css">  
+    <link rel="stylesheet" href="/assets/css/prism/prism.css">
+    <link rel="stylesheet" href="/assets/css/elegant_font/style.css">  
       
     <!-- Theme CSS -->
-    <link id="theme-style" rel="stylesheet" href="assets/css/styles.css">
-    <link id="theme-style" rel="stylesheet" href="assets/css/style.css">
+    <link id="theme-style" rel="stylesheet" href="/assets/css/styles.css">
+    <link id="theme-style" rel="stylesheet" href="/assets/css/style.css">
     
 </head> 
 
@@ -31,12 +31,12 @@
         <header id="header" class="header">
             <div class="container">
                 <div class="branding">
-                    <h1 class="logo">
+                    <div class="logo">
                         <a href="/">
                             <span aria-hidden="true" class="icon_documents_alt icon"></span>
                             <span class="text-highlight">Light</span><span class="text-bold">API</span>
                         </a>
-                    </h1>
+                    </div>
                     
                 </div><!--//branding-->
                 
@@ -68,7 +68,7 @@
                 A développer -->
                 <?php if($user) : ?>
                 <div class="top-search-box">
-	                 <form class="form-inline search-form justify-content-center" action="" method="get">
+	                 <form class="form-inline search-form justify-content-center" action="/dashboard" method="get">
 	            
 			            <input type="text" placeholder="Search..." name="search" class="form-control search-input">
 			            
@@ -94,14 +94,14 @@
     <div class="doc-wrapper">
             <div class="container">
                 <div id="doc-header" class="doc-header text-center">
-                    <h2 class="doc-title"><i class="icon fa fa-paper-plane"></i> 
+                    <h1 class="doc-title"><i class="icon fa fa-paper-plane"></i> 
                         <!-- Gestion dynamique du titre H2 -->
-                        <?php if(!empty($h2Title)) : ?>
-                            <?= $h2Title; ?>
+                        <?php if(!empty($h1Title)) : ?>
+                            <?= $h1Title; ?>
                             <?php else : ?>
-                            <?= CFG_H2_TITLE; ?>
+                            <?= CFG_H1_TITLE; ?>
                         <?php endif; ?>
-                    </h2>
+                    </h1>
 
                     <div class="meta"><i class="far fa-clock"></i> Dernière mise à jour : le <?php
                         $date = date('d/m/Y', strtotime('-1 days'));

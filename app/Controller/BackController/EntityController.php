@@ -37,10 +37,7 @@ class EntityController extends CoreController {
 
         if(!empty($_GET['page'])) {
             $offset = $limit * ($currentPage - 1);
-        } 
-
-        $entityInstance = new EntityModel();
-        $entities = $entityInstance->getAll('DESC', $limit, $offset);
+        }
 
         // Récupération de toutes les catégories
         $categoryInstance = new CategoryModel();
@@ -51,10 +48,27 @@ class EntityController extends CoreController {
             $categories[$category->getId()] = $category->getName();
         }
 
+        if(!empty($_GET['search'])) {
+            $keyword = strip_tags(trim($_GET['search']));
+
+            $entityInstance = new EntityModel();
+            $entities = $entityInstance->search($keyword, 1000, $offset);
+
+            if(!empty($entities) && is_array($entities)) {
+                $this->flash('<b>' . count($entities) . '</b> résultats trouvés.', 1);
+            } else {
+                $this->flash('Aucun résultat trouvé.', 'danger');
+            }
+        } else {
+            $entityInstance = new EntityModel();
+            $entities = $entityInstance->getAll('DESC', $limit, $offset);
+        }
+
         $this->assign('entities', $entities);
         $this->assign('categories', $categories);
         $this->assign('pages', $pagination);
         $this->assign('h1Title', 'Tableau de bord');
+        $this->assign('h2Title', 'Tableau de bord');
         $this->showView('dashboard');
     }
 
@@ -82,7 +96,7 @@ class EntityController extends CoreController {
             $categoryId = intval($_POST['category']);
 
             if(strlen($content) < 10 || strlen($content) > 5000) {
-                $this->flash('Le contenu ne doit pas exécéder <strong>5000</strong> caractères.<br>Le contenu doit être supérieur à <strong>10</strong> caractères', 'danger');
+                $this->flash('Le contenu doit être supérieur à <strong>10</strong> caractères.<br>Le contenu ne doit pas excéder <strong>5000</strong> caractères.', 'danger');
                 $this->redirect('/new/entity');
             }
 
@@ -114,10 +128,12 @@ class EntityController extends CoreController {
         SecurityController::isAdmin();
 
         if(!empty($_POST)) {
-
             // Pour éviter de ressaisir la entity en cas d'erreur
             if(!empty($_POST['content'])) {
                 $_SESSION['content'] = strip_tags(trim($_POST['content']));
+            }
+            if(!empty($_POST['vote'])) {
+                $_SESSION['vote'] = intval(trim($_POST['vote']));
             }
 
             if(empty($_POST['content']) || empty($_POST['category'])) {
@@ -126,11 +142,19 @@ class EntityController extends CoreController {
             }
             
             $content = strip_tags(trim($_POST['content']));
+            $vote = trim($_POST['vote']) !== '' ? intval(trim($_POST['vote'])) : null;
             $categoryId = intval($_POST['category']);
 
             if(strlen($content) < 10 || strlen($content) > 5000) {                
-                $this->flash('Le contenu ne doit pas exécéder <strong>5000</strong> caractères.<br>Le contenu doit être supérieur à <strong>10</strong> caractères', 'danger');
+                $this->flash('Le contenu doit être supérieur à <strong>10</strong> caractères.<br>Le contenu ne doit pas excéder <strong>5000</strong> caractères.', 'danger');
                 $this->redirect('/update/entity/' . $id);
+            }
+
+            if(!is_null($vote) && ($vote < 0 || $vote > 99999)) {
+                $this->flash('Le vote doit être supérieur à <strong>0</strong> caractères.<br>Le vote ne doit pas excéder <strong>99999</strong> caractères.', 'danger');
+                $this->redirect('/update/entity/' . $id);
+            } elseif(is_null($vote)) {
+                $vote = mt_rand(1000, 99999);
             }
 
             unset($_SESSION['content']);
@@ -138,6 +162,7 @@ class EntityController extends CoreController {
             $entityInstance = new EntityModel();
             $entityToUpdate = $entityInstance->getById(intval($id));
             $entityToUpdate->setContent($content);
+            $entityToUpdate->setVote($vote);
             $entityToUpdate->setCategoryId($categoryId);
             $entityToUpdate->update();
 

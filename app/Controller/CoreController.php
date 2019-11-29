@@ -49,9 +49,9 @@ abstract class CoreController {
         }
 
         // Inclusion des vues
-        require __DIR__.'/../view/layout/header.php';
-        require __DIR__.'/../view/' . $namePage . '.php';
-        require __DIR__.'/../view/layout/footer.php';
+        require __DIR__.'/../views/layout/header.php';
+        require __DIR__.'/../views/' . $namePage . '.php';
+        require __DIR__.'/../views/layout/footer.php';
     }
 
     /**

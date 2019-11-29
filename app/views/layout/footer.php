@@ -13,15 +13,15 @@
     </footer><!--//footer-->
     
     <!-- FontAwesome JS -->
-    <script defer src="assets/fontawesome/js/all.min.js"></script>
+    <script defer src="/assets/fontawesome/js/all.min.js"></script>
     <!-- Main Javascript -->          
-    <script type="text/javascript" src="assets/js/jquery/jquery.min.js"></script>
-    <script type="text/javascript" src="assets/js/bootstrap/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="/assets/js/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="/assets/js/bootstrap/bootstrap.bundle.min.js"></script>
     <!--<script type="text/javascript" src="assets/js/bootstrap/bootstrap.min.js"></script>-->
-    <script type="text/javascript" src="assets/js/prism/prism.js"></script>    
-    <script type="text/javascript" src="assets/js/jquery/jquery.scrollTo.min.js"></script>      
-    <script type="text/javascript" src="assets/js/stickyfill/stickyfill.min.js"></script>                                                             
-    <script type="text/javascript" src="assets/js/main.js"></script>
+    <script type="text/javascript" src="/assets/js/prism/prism.js"></script>    
+    <script type="text/javascript" src="/assets/js/jquery/jquery.scrollTo.min.js"></script>      
+    <script type="text/javascript" src="/assets/js/stickyfill/stickyfill.min.js"></script>                                                             
+    <script type="text/javascript" src="/assets/js/main.js"></script>
     
 </body>
 </html> 

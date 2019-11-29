@@ -22,7 +22,7 @@ abstract class CoreModel {
      * @param integer $offset
      */
     public function getAll($order = 'ASC', $limit = null, $offset = null) {
-        $order = $order == 'DESC' ? 'DESC' : 'ASC';
+        $order = ($order == 'DESC') ? 'DESC' : 'ASC';
 
         $sql = "SELECT * FROM " . static::TABLE_NAME . " ORDER BY id " . $order;
 

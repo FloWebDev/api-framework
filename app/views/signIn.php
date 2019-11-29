@@ -5,7 +5,7 @@
                                 <h2 class="section-title">Formulaire</h2>
                                 <div class="section-block">
 
-<form class="text-dark bg-white border border-success rounded" action="" method="POST">
+<form class="text-dark bg-white border border-dark rounded" action="" method="POST">
 
 <div class="col-12 col-md-10 mx-auto py-2 my-3">
 
@@ -25,10 +25,9 @@
     <div class="form-group mb-2">
       <label for="username" class="font-weight-bold">Identifiant</label>
       <input type="text" class="form-control border border-success" id="username" placeholder="Idenfitiant" name="username"
-      value="<?php if(!empty($_SESSION['username'])) : ?>
-<?= $_SESSION['username']; ?>
-<?php unset($_SESSION['username']); ?>
-<?php endif; ?>">
+      value="<?= !empty($_SESSION['username']) ? $_SESSION['username'] : ''; ?>">
+      <!-- Suppression username en session -->
+      <?php unset($_SESSION['username']); ?>
       <small id="notaBene" class="form-text text-white">Ne communiquez jamais votre identifiant ou mot de passe à un tiers.</small>
     </div>
 

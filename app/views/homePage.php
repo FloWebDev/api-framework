@@ -3,7 +3,7 @@
                             <section id="getting-started-section" class="doc-section">
                                 <h2 class="section-title">Getting Started</h2>
                                 <div class="section-block">
-                                    <p>Cette API a pour objectif de collecter et mettre gratuitement à dispositon des développeurs des blagues, devinettes, proverbes et toutes autres données humoristiques.<br>L'API vise également à initier les développeurs web juniors quant à l'utilisation d'une API REST et l'authentification par token (ici, par Json Web Token).</p>
+                                    <p>Cette API a pour objectif de collecter et mettre gratuitement à dispositon des développeurs des contenus divertissants (proverbes, blagues, chuck norris facts, devinettes, vraies et fausses fakes news, etc).</p>
                                     <a href="/token" class="btn btn-green"><i class="fas fa-medal"></i> Demander un token</a>
                                 </div>
                             </section><!--//doc-section-->
@@ -55,7 +55,7 @@
                                                 <th scope="row"><span class="badge badge-success">GET</span></th>
                                                 <td style="width: 150px;"><code>/api/get</code></td>
                                                 <td><b>limit</b><br><b>category</b></td>
-                                                <td>Min : 1 - Max : 2500<br>blague, chucknorrisfact, devinette, proverbe</td>
+                                                <td>- Min : 1 - Max : 2500<br>- <?= !empty($categoryList) ? $categoryList : '<b>Pas de catégorie</b>'; ?></td>
                                                 <td><i class="fas fa-check text-danger"></i></td>
                                                 <td>Permet de récupérer au format Json un ensemble d'enregistrements par limite et par types.</td>
                                                 </tr>
@@ -79,7 +79,7 @@
                                                 <th scope="row"><span class="badge badge-success">GET</span></th>
                                                 <td><code>/api/get/random</code></td>
                                                 <td><b>limit</b><br><b>category</b></td>
-                                                <td>Min : 1 - Max : 50<br>blague, chucknorrisfact, devinette, proverbe</td>
+                                                <td>- Min : 1 - Max : 50<br>- <?= !empty($categoryList) ? $categoryList : '<b>Pas de catégorie</b>'; ?></td>
                                                 <td><i class="fas fa-check text-danger"></i></td>
                                                 <td>Permet d'obtenir une ou plusieurs données aléatoires. Il est possible de préciser le type de données souhaitées.</td>
                                                 </tr>
@@ -152,38 +152,27 @@ echo "&lsaquo;/pre&rsaquo;";
                                 <div id="json-response" class="section-block">
                                     <div class="code-block">
                                         <h6>Exemple de retour en Json</h6>
-                                        <pre><code class="language-json">array(3) {
-  [0]=>
-  array(3) {
-    ["id"]=>
-    string(3) "115"
-    ["content"]=>
-    string(55) "D'où viennent les gens les plus dangereux ?
-D’angers"
-    ["category"]=>
-    string(6) "Blague"
-  }
-  [1]=>
-  array(3) {
-    ["id"]=>
-    string(3) "114"
-    ["content"]=>
-    string(74) "Où irait Voldemort s'il décidait de jouer de la trompette ?
-À Jazzkaban"
-    ["category"]=>
-    string(6) "Blague"
-  }
-  [2]=>
-  array(3) {
-    ["id"]=>
-    string(3) "113"
-    ["content"]=>
-    string(104) "Pourquoi est-ce que les éoliennes n'ont pas de copain ?
-Parce qu’elles se prennent toujours des vents"
-    ["category"]=>
-    string(6) "Blague"
-  }
-}</code></pre>
+                                        <pre><code class="language-json">[
+    {
+        "id": 720,
+        "content": "Comment appelle-t-on une chauve-souris qui a des cheveux ?\r\n- Une souris",
+        "vote": 1717,
+        "category": "Blague"
+    },
+    {
+        "id": 719,
+        "content": "Comment appelle-t-on un chat dans l’espace ?\nUn chatellite",
+        "vote": 3832,
+        "category": "Devinette"
+    },
+    {
+        "id": 718,
+        "content": "Pourquoi est-ce que les éoliennes n'ont pas de copain ?
+        Parce qu’elles se prennent toujours des vents",
+        "vote": 3791,
+        "category": "Blague"
+    }
+]</code></pre>
                                     </div><!--//code-block-->
                                 </div><!--//section-block-->
 
@@ -194,11 +183,13 @@ Parce qu’elles se prennent toujours des vents"
   {
     "id": 212,
     "content": "Un jour, Chuck Norris a fait la blague de \"j'ai volé ton nez\" à Mickael Jackson...",
+    "vote": 2557,
     "categorie": "Chuck Norris Fact"
   },
   {
     "id": 112,
     "content": "Comment appelle-t-on un combat entre un petit pois et une carotte ?\nUn bon duel",
+    "vote": 5664,
     "categorie": "Blague"
   }
 ]</code></pre>

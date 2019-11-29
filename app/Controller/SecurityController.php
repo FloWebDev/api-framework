@@ -35,7 +35,7 @@ class SecurityController extends CoreController {
 
             // Si utilisateur inconnu
             if(!$user) {
-                $this->flash('Utilisateur inconnu.', 'danger');
+                $this->flash('Identifiant et/ou mot de passe incorrect(s).', 'danger');
                 $this->redirect('/login');
             }
 
@@ -135,6 +135,7 @@ class SecurityController extends CoreController {
         $instanceRole = new RoleModel();
         $roles = $instanceRole->getAll();
 
+        $this->assign('h1Title', 'Gestion des utilisateurs');
         $this->assign('pageTitle', 'Formulaire d\'inscription');
         $this->assign('pageDescription', 'Formulaire d\'inscription');
         $this->assign('roles', $roles);

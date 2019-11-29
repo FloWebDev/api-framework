@@ -22,6 +22,7 @@ class ApiController extends CoreController {
 
         $result = array();
 
+        // Valeurs par défaut
         $limit = 10;
         $category = null;
 
@@ -35,19 +36,27 @@ class ApiController extends CoreController {
             }
         }
 
+        // Gestion de la catégorie
         if(!empty($_GET['category'])) {
-            $category = strip_tags(trim($_GET['category']));
-            if($category === 'blague' ) {
-                $category = 'Blague';
-            } elseif ($category === 'chucknorrisfact') {
-                $category = 'Chuck Norris Fact';
-            } elseif ($category === 'devinette') {
-                $category = 'Devinette';
-            } elseif ($category === 'proverbe') {
-                $category = 'Proverbe';
-            } else {
-                $category = null;
+            $categoryInstance = new CategoryModel();
+            $categories = $categoryInstance->getAll();
+
+            $categoryLib = array();
+
+            if(!empty($categories) && is_array($categories)) {
+                foreach($categories as $cat) {
+                    $categoryLib[] = $cat->getName();
+                }
+
+                $categoryToCheck = strip_tags(trim($_GET['category']));
+
+                if(in_array($categoryToCheck, $categoryLib)) {
+                    $category = $categoryToCheck;
+                } else {
+                    $category = null;
+                }
             }
+            unset($cat);
         }
 
         $entityInstance = new EntityModel();
@@ -56,8 +65,9 @@ class ApiController extends CoreController {
         if(!empty($entities) && is_array($entities)) {
             foreach($entities as $entity) {
                 $result[] = [
-                    'id' => $entity->getId(),
+                    'id' => intval($entity->getId()),
                     'content' => $entity->getContent(),
+                    'vote' => !empty($entity->getVote()) ? intval($entity->getVote()) : 1717,
                     'category' => !empty($entity->getCategory()) ? $entity->getCategory()->getName() : 'NC'
                 ];
             }
@@ -92,8 +102,9 @@ class ApiController extends CoreController {
 
         if($entity) {
             $result[] = [
-                'id' => $entity->getId(),
+                'id' => intval($entity->getId()),
                 'content' => $entity->getContent(),
+                'vote' => !empty($entity->getVote()) ? intval($entity->getVote()) : 1717,
                 'category' => !empty($entity->getCategory()) ? $entity->getCategory()->getName() : 'NC'
             ];
         } else {
@@ -133,9 +144,10 @@ class ApiController extends CoreController {
             $index = random_int(0, (count($entities)-1));
 
             $result[] = [
-                'id' => $entities[$index]->getId(),
-                'content' => $entities[$index]->getContent(),
-                'category' => !empty($entities[$index]->getCategory()) ? $entities[$index]->getCategory()->getName() : 'NC'
+                'id' => intval($entity->getId()),
+                'content' => $entity->getContent(),
+                'vote' => !empty($entity->getVote()) ? intval($entity->getVote()) : 1717,
+                'category' => !empty($entity->getCategory()) ? $entity->getCategory()->getName() : 'NC'
             ];
         } else {
             $result[] = [
@@ -170,19 +182,27 @@ class ApiController extends CoreController {
             }
         }
 
+        // Gestion de la catégorie
         if(!empty($_GET['category'])) {
-            $category = strip_tags(trim($_GET['category']));
-            if($category === 'blague' ) {
-                $category = 'Blague';
-            } elseif ($category === 'chucknorrisfact') {
-                $category = 'Chuck Norris Fact';
-            } elseif ($category === 'devinette') {
-                $category = 'Devinette';
-            } elseif ($category === 'proverbe') {
-                $category = 'Proverbe';
-            } else {
-                $category = null;
+            $categoryInstance = new CategoryModel();
+            $categories = $categoryInstance->getAll();
+
+            $categoryLib = array();
+
+            if(!empty($categories) && is_array($categories)) {
+                foreach($categories as $cat) {
+                    $categoryLib[] = $cat->getName();
+                }
+
+                $categoryToCheck = strip_tags(trim($_GET['category']));
+
+                if(in_array($categoryToCheck, $categoryLib)) {
+                    $category = $categoryToCheck;
+                } else {
+                    $category = null;
+                }
             }
+            unset($cat);
         }
 
         $entityInstance = new EntityModel();

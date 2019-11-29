@@ -17,7 +17,7 @@ class Captcha {
      */
     public function createCaptcha() {
         // Enregistrement du captcha en session
-        $captchaCode = mt_rand(1000,9999);
+        $captchaCode = mt_rand(1000, 9999);
         $_SESSION['captcha'] = $captchaCode;
         
         // Création de l'image
