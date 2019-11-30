@@ -59,6 +59,7 @@ class SecurityController extends CoreController {
             $user->updateConnectedAt();
 
             $this->createSessionUser($user);
+            $this->createToken();
             // $this->flash('Connexion effectuée avec succès.', 1);
             $this->redirect('/dashboard');
 
@@ -154,6 +155,14 @@ class SecurityController extends CoreController {
     }
 
     /**
+     * Permet de créer un token de session
+     * 
+     */
+    private function createToken() {
+        $_SESSION['token'] = bin2hex(random_bytes(32));
+    }
+
+    /**
      * Permet de déconnecter l'utilisateur
      * et vider la session utilisateur
      * 
@@ -162,6 +171,7 @@ class SecurityController extends CoreController {
         // Permet de vérifier que l'utilisateur est connecté.
         self::isConnected();
 
+        unset($_SESSION['token']); // On supprime le token de session
         unset($_SESSION['user']);
         // $this->flash('Déconnexion effectuée avec succès.', 'danger');
         $this->redirect('/');
@@ -216,11 +226,28 @@ class SecurityController extends CoreController {
         // Vérifie dans un premier temps que l'utilisateur soit connecté
         self::isConnected();
 
-        if(!empty($_SESSION['user']) && in_array($_SESSION['user']->getRole()->getCode(), ['ROLE_ADMIN', 'ROLE_MODO'])) {
+        if(!empty($_SESSION['user']) && !in_array($_SESSION['user']->getRole()->getCode(), ['ROLE_ADMIN', 'ROLE_MODO'])) {
             self::flash('Vous devez être modérateur ou administrateur pour accéder à cette page', 'danger');
             self::redirect('/dashboard');
         }
 
         return true;
+    }
+
+    /**
+     * Permet de vérier la validité d'un token de session
+     * 
+     */
+    public static function checkToken() {
+        if(!empty($_GET['token'] || !empty($_POST['token']))) {
+            $token = !empty($_GET['token']) ? $_GET['token'] : $_POST['token'];
+
+            if ($token == $_SESSION['token']) {
+                return true;
+            }
+        }
+
+        self::flash('Token de session invalide', 'danger');
+        self::redirect('/');
     }
 }

@@ -74,6 +74,11 @@ $router->map( 'GET', '/delete/entity/[i:id]', function($id) {
     $controller->entityDelete($id);
 }, 'delete_entity');
 
+$router->map( 'GET', '/purge', function() {
+    $controller = new EntityController();
+    $controller->purge();
+}, 'purge_entity');
+
 $router->map( 'GET', '/alim-curl', function() {
     $controller = new DefaultController();
     $controller->alimCurl();

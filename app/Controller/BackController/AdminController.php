@@ -43,6 +43,8 @@ class AdminController extends CoreController {
     public function userDelete($id) {
         // Vérifie que l'utilisateur soit connecté ET administrateur
         SecurityController::isAdmin();
+        // Vérification du token de session
+        SecurityController::checkToken();
 
         $userInstance = new UserModel();
         $user = $userInstance->getById($id);
@@ -63,6 +65,8 @@ class AdminController extends CoreController {
     public function userUpdate() {
         // Vérifie que l'utilisateur soit connecté ET administrateur
         SecurityController::isAdmin();
+        // Vérification du token de session
+        SecurityController::checkToken();
 
         // Vérifications de l'exhaustivité des informations transmises
         if(empty($_POST['user']) || empty($_POST['username']) || empty($_POST['role'])) {

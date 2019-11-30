@@ -1,3 +1,6 @@
+<!-- Calcul chargement de la page -->
+<?php $startTime = microtime(true); ?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -10,7 +13,7 @@
     <meta name="keywords" content="<?= !empty($pageKeywords) ? $pageKeywords : 'humour, blague, devinette, chuck norris fact, api, entity api, blague, fr, français, blague française'; ?>">
     <meta name="author" content="">    
     <link rel="shortcut icon" href="/favicon.ico">  
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <!-- <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'> -->
 
     <!--<script defer src="https://use.fontawesome.com/releases/v5.8.2/js/all.js" integrity="sha384-DJ25uNYET2XCl5ZF++U8eNxPWqcKohUUBUpKGlNLMchM7q4Wjg2CUpjHLaL8yYPH" crossorigin="anonymous"></script>-->
     <!-- Global CSS -->
@@ -25,7 +28,8 @@
     
 </head> 
 
-<body class="body-green">
+<body class="body-green"> 
+
     <div class="page-wrapper">
         <!-- ******Header****** -->
         <header id="header" class="header">

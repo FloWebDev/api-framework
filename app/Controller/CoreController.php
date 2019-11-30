@@ -6,13 +6,19 @@ abstract class CoreController {
 
     private $varList;
     private $user;
+    private $token;
 
     /**
      * Constructeur du CoreController
      */
     public function __construct() {
+        
         if(!empty($_SESSION['user'])) {
             $this->user = $_SESSION['user'];
+        }
+
+        if(!empty($_SESSION['token'])) {
+            $this->token = $_SESSION['token'];
         }
     }
 
@@ -38,8 +44,9 @@ abstract class CoreController {
      */
     protected function showView($namePage)
     {
-        // Variable utilisateur transmise à toutes les views
+        // Variables transmises à toutes les views
         $this->assign('user', $this->user);
+        $this->assign('token', $this->token);
 
         // Je boucle sur mes variables à ajouter à la vue
         if(!empty($this->varList)) {

@@ -40,6 +40,7 @@
     <?php endif; ?>
 
     <!-- Bouton de validation -->
+    <input type="hidden" value="<?= $token; ?>" name="token">
     <input type="submit" class="btn btn-dark" value="Ajouter">
 </form>
 

@@ -81,6 +81,8 @@ class EntityController extends CoreController {
         SecurityController::isConnected();
 
         if(!empty($_POST)) {
+            // Vérification du token de session
+            SecurityController::checkToken();
 
             // Pour éviter de ressaisir la entity en cas d'erreur
             if(!empty($_POST['content'])) {
@@ -128,6 +130,9 @@ class EntityController extends CoreController {
         SecurityController::isAdmin();
 
         if(!empty($_POST)) {
+            // Vérification du token de session
+            SecurityController::checkToken();
+
             // Pour éviter de ressaisir la entity en cas d'erreur
             if(!empty($_POST['content'])) {
                 $_SESSION['content'] = strip_tags(trim($_POST['content']));
@@ -189,11 +194,29 @@ class EntityController extends CoreController {
     public function entityDelete($id) {
         // Vérifie que l'utilisateur soit connecté et administrateur
         SecurityController::isAdmin();
+        // Vérification du token de session
+        SecurityController::checkToken();
 
         $entityToDelete = new EntityModel();
         $entityToDelete->delete($id);
 
         $this->flash('Entity #' . $id . ' supprimée avec succès', 1);
+        $this->redirect('/dashboard');
+    }
+
+    /**
+     * Permet de créer une nouvelle entrée
+     * 
+     */
+    public function purge() {
+        // Vérifie que l'utilisateur soit connecté et administrateur
+        SecurityController::isAdmin();
+        // Vérification du token de session
+        SecurityController::checkToken();
+
+        // TODO
+
+        $this->flash('Purge terminée', 1);
         $this->redirect('/dashboard');
     }
 }

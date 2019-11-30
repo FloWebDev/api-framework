@@ -22,6 +22,12 @@
     <script type="text/javascript" src="/assets/js/jquery/jquery.scrollTo.min.js"></script>      
     <script type="text/javascript" src="/assets/js/stickyfill/stickyfill.min.js"></script>                                                             
     <script type="text/javascript" src="/assets/js/main.js"></script>
-    
+
+    <!-- Calcul chargement de la page -->
+    <?php if($user && $user->getRole()->getCode() == 'ROLE_ADMIN') : ?>
+        <?php $delaiChargement = round((microtime(true) - $startTime), 4); ?>
+        <p class="text-center">La page a été chargée en : <b><?= $delaiChargement; ?></b> ms</p>
+    <?php endif; ?>
+
 </body>
 </html> 

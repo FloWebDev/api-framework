@@ -35,6 +35,7 @@ class DefaultController extends CoreController {
         
         $this->assign('pageTitle', 'Page d\'accueil de cette API');
         $this->assign('pageDescription', 'Page d\'accueil de cette API');
+        $this->assign('h1Title', 'Documentation API');
         $this->assign('h2Title', 'Documentation API');
         $this->assign('categoryList', $formatCategoryList);
         $this->showView('homePage');
@@ -229,8 +230,8 @@ class DefaultController extends CoreController {
                 // Content
                 $mail->isHTML(true);                                  // Set email format to HTML
                 $mail->Subject = 'Votre Json Web Token';
-                $mail->Body    = '<p>Bonjour,</p> <p>Voici le token au format JWT que vous avez demandé : <strong>' . $token . '</strong></p><p>Ce token est valable 48 heures et doit être renseigné  dans l\'en-tête d\'autorisation HTTP de vos requêtes lorsque la route utilisée nécessite une autentification.</p><p>Pour plus de détails, reportez-vous à la documentation présente sur le site.</p><p>A bientôt.<br>Florian - FloWebDev</p>';
-                $mail->AltBody = 'Bonjour, Voici le token au format JWT que vous avez demandé : ' . $token . ' Ce token est valable 48 heures et doit être renseigné  dans l\'en-tête d\'autorisation HTTP de vos requêtes lorsque la route utilisée nécessite une autentification. Pour plus de détails, reportez-vous à la documentation présente sur le site. A bientôt. Florian - FloWebDev';
+                $mail->Body    = '<p>Bonjour,</p> <p>Voici le token au format JWT que vous avez demandé : <br><strong>' . $token . '</strong></p><p>Ce token est valable 48 heures et doit être renseigné  dans l\'en-tête d\'autorisation HTTP de vos requêtes lorsque la route utilisée nécessite une authentification.</p><p>Pour plus de détails, reportez-vous à la documentation de l\'API.</p><p>A bientôt.<br>FloWebDev</p>';
+                $mail->AltBody = 'Bonjour, Voici le token au format JWT que vous avez demandé : ' . $token . ' Ce token est valable 48 heures et doit être renseigné  dans l\'en-tête d\'autorisation HTTP de vos requêtes lorsque la route utilisée nécessite une authentification. Pour plus de détails, reportez-vous à la documentation de l\'API. A bientôt. FloWebDev';
             
                 $mail->send();
 

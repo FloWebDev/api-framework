@@ -1,3 +1,12 @@
+/*
+* @FloWebDev
+* Custom CSS pour ajout @font-face
+*/
+@font-face {
+  font-family: 'Open Sans';
+  src: url('/assets/fonts/OpenSansRegular.woff') format('woff');
+}
+
 /*   
  * Template Name: PrettyDocs - Bootstrap 4 Template for documentations
  * Version: 2.0

@@ -15,7 +15,7 @@
                                         </div>
                                     </div>
 
-                                    <p class="card-text mt-3">Avec le formulaire de demande de token, vous recevrez directement un email contenant le JWT. Celui-ci sera valide <b>48 heures</b>.<br>Par la suite, vous pourrez automatiser la demande d'obtention d'un token via la route API prévue à cet effet (reportez-vous à la documentation)</p>
+                                    <p class="card-text mt-3">Avec le formulaire de demande de token, vous recevrez directement un email contenant le JWT. Celui-ci sera valide <b>48 heures</b>.<br>Par la suite, vous pourrez automatiser la demande d'obtention d'un token via la route API prévue à cet effet (reportez-vous à la documentation).</p>
                                 </div>
                             </section><!--//doc-section-->
 

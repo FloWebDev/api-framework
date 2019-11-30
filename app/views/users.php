@@ -29,22 +29,22 @@
                     </thead>
                     <tbody>
 
-                    <?php foreach($users as $user) : ?>
+                    <?php foreach($users as $uUser) : ?>
                         <!-- Création d'un formulaire par user -->
                         <form action="/update/user" method="POST">
                             <tr>
                             <th scope="row">
-                                #<?= $user->getId(); ?>
-                                <input type="hidden" value="<?= $user->getId(); ?>" name="user">
+                                #<?= $uUser->getId(); ?>
+                                <input type="hidden" value="<?= $uUser->getId(); ?>" name="user">
                             </th>
-                            <td><input class="form-control border border-dark" type="text" value="<?= $user->getUsername(); ?>" name="username"></td>
+                            <td><input class="form-control border border-dark" type="text" value="<?= $uUser->getUsername(); ?>" name="username"></td>
                             <td><input class="form-control border border-dark" type="password" placeholder="Nouveau MDP" name="password"></td>
                             <td>
                                 <?php if(!empty($roles)) : ?>
                                     <select class="form-control border border-dark" name="role" id="role">
                                     <?php foreach($roles as $id => $role) : ?>
                                         <option for="role" value="<?= $id ?>"
-                                        <?php if($id == $user->getRoleId()) : ?>
+                                        <?php if($id == $uUser->getRoleId()) : ?>
                                             selected
                                         <?php endif; ?>
                                         ><?= $role?></option>
@@ -55,12 +55,15 @@
 
 
 
-                            <td><?= $user->getCreatedAt(); ?></td>
-                            <td><?= $user->getConnectedAt(); ?></td>
+                            <td><?= $uUser->getCreatedAt(); ?></td>
+                            <td><?= $uUser->getConnectedAt(); ?></td>
                             <td class="text-center"><input type="checkbox" class="form-check-input" id="is_active" name="actif"
-                            <?php if($user->getIsActive()) : ?>checked<?php endif; ?> value="1"></td>
-                            <td><button type="submit" class="btn btn-dark mt-1"><i class="fas fa-save"></i></button>
-                            <a href="/delete/user/<?= $user->getId(); ?>" class="btn btn-danger text-white deleteButton mt-1"><i class="fas fa-trash-alt"></i></a></td>
+                            <?php if($uUser->getIsActive()) : ?>checked<?php endif; ?> value="1"></td>
+                            <td>
+                            <input type="hidden" value="<?= $token; ?>" name="token">
+                            <button type="submit" class="btn btn-dark mt-1"><i class="fas fa-save"></i></button>
+                            <a href="/delete/user/<?= $uUser->getId(); ?>?token=<?= $token; ?>" class="btn btn-danger text-white deleteButton mt-1"><i class="fas fa-trash-alt"></i></a>
+                            </td>
                             </tr>
                         </form>
                     <?php endforeach; ?>
@@ -71,7 +74,7 @@
 
 
 <?php else : ?>
-        <p class="card col-12 col-md-10 mx-auto text-dark">Aucun résultat à afficher.</p>
+        <p class="card col-12 text-dark">Aucun résultat à afficher.</p>
 <?php endif; ?>
 </div>
 
