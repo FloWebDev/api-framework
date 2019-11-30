@@ -6,6 +6,7 @@ use App\Util\Captcha;
 use App\Model\EntityModel;
 use App\Util\JwtService;
 use App\Controller\CoreController;
+use App\Controller\SecurityController;
 use App\Model\CategoryModel;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
@@ -164,6 +165,8 @@ class DefaultController extends CoreController {
      * Permet d'afficher la page d'accueil
      */
     public function token() {
+        // Permet de vérifier que l'utilisateur n'est pas connecté.
+        SecurityController::isNotConnected();
 
         if(!empty($_POST)) {
             if(!empty($_POST['email'])) {
