@@ -151,14 +151,14 @@ class DefaultController extends CoreController {
      */
     public function jwt() {
 
-        JwtService::checkJWT();
+        // JwtService::checkJWT();
 
-        $array = [
-            'code' => 'Bravo !',
-            'message' => 'JWT reconnu avec succès !'
-        ];
+        // $array = [
+        //     'code' => 'Bravo !',
+        //     'message' => 'JWT reconnu avec succès !'
+        // ];
 
-        $this->showJson($array);
+        // $this->showJson($array);
     }
 
     /**
