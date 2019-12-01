@@ -51,98 +51,98 @@ class DefaultController extends CoreController {
         // Blagues
         ////////////////////
 
-        $url = 'https://bridge.buddyweb.fr/api/blagues/blagues';
-        $curl = curl_init();
-        curl_setopt($curl, CURLOPT_URL, $url);
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-        $jsonResponse = curl_exec($curl);
-        $response = json_decode($jsonResponse, 1);
-        curl_close($curl);
+        // $url = 'https://bridge.buddyweb.fr/api/blagues/blagues';
+        // $curl = curl_init();
+        // curl_setopt($curl, CURLOPT_URL, $url);
+        // curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+        // $jsonResponse = curl_exec($curl);
+        // $response = json_decode($jsonResponse, 1);
+        // curl_close($curl);
 
-        $entitiesToInsert = array();
+        // $entitiesToInsert = array();
 
-        foreach($response as $value) {
-            $entitiesToInsert[] = $value['blagues'];
-        }
-        unset($value);
+        // foreach($response as $value) {
+        //     $entitiesToInsert[] = $value['blagues'];
+        // }
+        // unset($value);
 
-        foreach($entitiesToInsert as $content) {
-            $newEntity = new EntityModel();
-            $newEntity->setContent($content);
-            $newEntity->setCategoryId(1);
-            $result = $newEntity->new();
-        }
-        unset($content);
-        unset($entitiesToInsert);
+        // foreach($entitiesToInsert as $content) {
+        //     $newEntity = new EntityModel();
+        //     $newEntity->setContent($content);
+        //     $newEntity->setCategoryId(1);
+        //     $result = $newEntity->new();
+        // }
+        // unset($content);
+        // unset($entitiesToInsert);
 
         ////////////////////
         // Chuck Norris Fact
         ////////////////////
 
-        $url = 'https://www.chucknorrisfacts.fr/api/get?data=nb:99';
-        $curl = curl_init();
-        curl_setopt($curl, CURLOPT_HTTPHEADER, array(
-            // 'Content-type: text/html; charset=UTF-8'
-        ));
-        curl_setopt($curl, CURLOPT_URL, $url);
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-        $jsonResponse = curl_exec($curl);
-        $response = json_decode($jsonResponse, 1);
-        curl_close($curl);
+        // $url = 'https://www.chucknorrisfacts.fr/api/get?data=nb:99';
+        // $curl = curl_init();
+        // curl_setopt($curl, CURLOPT_HTTPHEADER, array(
+        //     // 'Content-type: text/html; charset=UTF-8'
+        // ));
+        // curl_setopt($curl, CURLOPT_URL, $url);
+        // curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+        // $jsonResponse = curl_exec($curl);
+        // $response = json_decode($jsonResponse, 1);
+        // curl_close($curl);
 
-        $entitiesToInsert = array();
+        // $entitiesToInsert = array();
        
-        foreach($response as $value) {
-            $entitiesToInsert[] =  str_replace('&#039;', '\'', strip_tags((html_entity_decode($value['fact']))));
-        }
-        unset($value);
+        // foreach($response as $value) {
+        //     $entitiesToInsert[] =  str_replace('&#039;', '\'', strip_tags((html_entity_decode($value['fact']))));
+        // }
+        // unset($value);
 
         // dd($entitiesToInsert);
 
-        foreach($entitiesToInsert as $content) {
-            $newEntity = new EntityModel();
-            $newEntity->setContent($content);
-            $newEntity->setCategoryId(2);
-            $result = $newEntity->new();
-        }
-        unset($content);
-        unset($entitiesToInsert);
+        // foreach($entitiesToInsert as $content) {
+        //     $newEntity = new EntityModel();
+        //     $newEntity->setContent($content);
+        //     $newEntity->setCategoryId(2);
+        //     $result = $newEntity->new();
+        // }
+        // unset($content);
+        // unset($entitiesToInsert);
 
         ////////////////////
         // Blagues
         ////////////////////
 
-        $entitiesToInsert = array();
+        // $entitiesToInsert = array();
 
-        for($index = 1; $index <= 102; $index++) {
-            $url = 'https://blague.xyz/joke/' . $index;
-            $curl = curl_init();
-            curl_setopt($curl, CURLOPT_URL, $url);
-            curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-            $jsonResponse = curl_exec($curl);
-            $response = json_decode($jsonResponse, 1);
-            curl_close($curl);
+        // for($index = 1; $index <= 102; $index++) {
+        //     $url = 'https://blague.xyz/joke/' . $index;
+        //     $curl = curl_init();
+        //     curl_setopt($curl, CURLOPT_URL, $url);
+        //     curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+        //     $jsonResponse = curl_exec($curl);
+        //     $response = json_decode($jsonResponse, 1);
+        //     curl_close($curl);
 
-            $entitiesToInsert[] = $response['joke']['question'] . "\n" . $response['joke']['answer'];
-        }
+        //     $entitiesToInsert[] = $response['joke']['question'] . "\n" . $response['joke']['answer'];
+        // }
 
-        foreach($entitiesToInsert as $content) {
-            $newEntity = new EntityModel();
-            $newEntity->setContent($content);
-            $newEntity->setCategoryId(3);
-            $result = $newEntity->new();
-        }
-        unset($content);
-        unset($entitiesToInsert);
+        // foreach($entitiesToInsert as $content) {
+        //     $newEntity = new EntityModel();
+        //     $newEntity->setContent($content);
+        //     $newEntity->setCategoryId(3);
+        //     $result = $newEntity->new();
+        // }
+        // unset($content);
+        // unset($entitiesToInsert);
 
 
         ////////////////////
         // Résultat final
         ////////////////////
 
-        $instance = new EntityModel();
-        $result = $instance->getAll();
-        dump($result);
+        // $instance = new EntityModel();
+        // $result = $instance->getAll();
+        // dump($result);
         
     }
 
@@ -262,40 +262,98 @@ class DefaultController extends CoreController {
      * Permet d'afficher la page d'accueil
      */
     public function scrapping() {
-        $entityArray = array();
 
-        $url = "https://entities-de-papa.com/blagues-courtes/";
+        // $entityArray = array();
 
-        for($page = 1; $page <= 250; $page++) {
-            $content = file_get_contents($url);
+        // $url = "https://citation-celebre.leparisien.fr/proverbe/francais";
 
-            preg_match_all("#<blockquote class=\"quotescollection-quote\"><p><b>(.+)</b><br><br />(.+)</p><footer class=\"attribution\">&mdash;&nbsp;<cite class=\"author\">@Entitys de papa</cite>#iU", $content, $result);
+
+        // $content = file_get_contents($url);
+        // echo $content;
+        // exit;
+
+        // preg_match_all("#title=\"Voir la source de la citation\">(.+)</a></q>#iU", $content, $result);
     
-            foreach($result[1] as $key => $entity) {
-                $entity = str_replace('@Entitys de papa', '', strip_tags((html_entity_decode($entity))) . "\n" . strip_tags((html_entity_decode($result[2][$key]))));
-    
-                if(!in_array($entity, $entityArray)) {
-                    $entityArray[] = $entity;
-                }
-            }
-        }
+        // foreach($result[1] as $cit) {
+        //     $entityArray[] = str_replace('&#039;', '\'', strip_tags((html_entity_decode($cit))));
+        // }
+
+        // for($page = 2; $page <= 105; $page++) {
+        //     $url = 'https://citation-celebre.leparisien.fr/proverbe/francais?page=' . $page;
+
+
+        //     $content = file_get_contents($url);
+
+        //     preg_match_all("#title=\"Voir la source de la citation\">(.+)</a></q>#iU", $content, $result);
+        
+        //     foreach($result[1] as $cit) {
+        //         $entityArray[] = str_replace('&#039;', '\'', strip_tags((html_entity_decode($cit))));
+        //     }
+        // }
+
 
         // dd($entityArray);
 
-        foreach($entityArray as $content) {
-            $newEntity = new EntityModel();
-            $newEntity->setContent($content);
-            $newEntity->setCategoryId('Devinette');
-            $result = $newEntity->new();
-        }
+        // foreach($entityArray as $content) {
+        //     $newEntity = new EntityModel();
+        //     $newEntity->setContent($content);
+        //     $newEntity->setCategoryId(4);
+        //     $result = $newEntity->new();
+        // }
+
+        ////////////////////
+        // Résultat final
+        ////////////////////
+
+        // $instance = new EntityModel();
+        // $result = $instance->getAll();
+        // dd($result);
+
+
+
+        /////////////////////////////////////////////////////////////////
+        /////////////////////////////////////////////////////////////////
+        /////////////////////////////////////////////////////////////////
+        /////////////////////////////////////////////////////////////////
+        /////////////////////////////////////////////////////////////////
+        /////////////////////////////////////////////////////////////////
+
+
+
+        // $entityArray = array();
+
+        // $url = "https://jokes-de-papa.com/blagues-courtes/";
+
+        // for($page = 1; $page <= 250; $page++) {
+        //     $content = file_get_contents($url);
+
+        //     preg_match_all("#<blockquote class=\"quotescollection-quote\"><p><b>(.+)</b><br><br />(.+)</p><footer class=\"attribution\">&mdash;&nbsp;<cite class=\"author\">@Jokes de papa</cite>#iU", $content, $result);
+    
+        //     foreach($result[1] as $key => $entity) {
+        //         $entity = str_replace('@Jokes de papa', '', strip_tags((html_entity_decode($entity))) . "\n" . strip_tags((html_entity_decode($result[2][$key]))));
+    
+        //         if(!in_array($entity, $entityArray)) {
+        //             $entityArray[] = $entity;
+        //         }
+        //     }
+        // }
+
+        // dd($entityArray);
+
+        // foreach($entityArray as $content) {
+        //     $newEntity = new EntityModel();
+        //     $newEntity->setContent($content);
+        //     $newEntity->setCategoryId('Devinette');
+        //     $result = $newEntity->new();
+        // }
         
         ////////////////////
         // Résultat final
         ////////////////////
 
-        $instance = new EntityModel();
-        $result = $instance->getAll();
-        dump($result);
+        // $instance = new EntityModel();
+        // $result = $instance->getAll();
+        // dd($result);
 
     }
 }

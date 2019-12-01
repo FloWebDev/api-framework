@@ -5,7 +5,7 @@ namespace App\Controller;
 abstract class CoreController {
 
     private $namedRoutes;
-    private $basePath = '';
+    private $basePath = CFG_BASE_PATH;
     private $varList;
     private $user;
     private $token;
@@ -105,14 +105,15 @@ abstract class CoreController {
         exit; // Pour stopper toute éventuelle continuation d'exécution de script
     }
 
-        /**
-     * Reversed routing
+    /**
+     * Reversed routing / Routing inversé
      *
-     * Generate the URL for a named route. Replace regexes with supplied parameters
+     * Permet de générer une url en fonction d'une route donnée.
+     * Remplace les regex avec les paramètres fournies
      *
-     * @param string $routeName The name of the route.
-     * @param array @params Associative array of parameters to replace placeholders with.
-     * @return string The URL of the route with named parameters in place.
+     * @param string $routeName Le nom de la route.
+     * @param array @params Tableau associatif des paramètres à fournir dans la route.
+     * @return string L'URL de la route avec les paramètres si nécessaire.
      * @throws Exception
      */
     public function generate($routeName, array $params = [])

@@ -79,21 +79,6 @@ $router->map( 'GET', '/purge', function() {
     $controller->purge();
 }, 'purge_entity');
 
-$router->map( 'GET', '/alim-curl', function() {
-    $controller = new DefaultController();
-    $controller->alimCurl();
-}, 'alim-curl');
-
-$router->map( 'GET|POST', '/jwt', function() {
-    $controller = new DefaultController();
-    $controller->jwt();
-}, 'jwt');
-
-$router->map( 'GET', '/scrapping', function() {
-    $controller = new DefaultController();
-    $controller->scrapping();
-}, 'scrapping');
-
 // Définition des routes de l'API
 
 $router->map( 'GET', '/api/get', function() {
@@ -142,3 +127,26 @@ if( is_array($match) && is_callable( $match['target'] ) ) {
     $error->error404Html();
 	// Error::error404();
 }
+
+
+
+
+
+
+// Routes de scrapping, appel API et tests
+// (ne doivent plus être utilisées)
+
+// $router->map( 'GET', '/alim-curl', function() {
+//     $controller = new DefaultController();
+//     $controller->alimCurl();
+// }, 'alim-curl');
+
+// $router->map( 'GET|POST', '/jwt', function() {
+//     $controller = new DefaultController();
+//     $controller->jwt();
+// }, 'jwt');
+
+// $router->map( 'GET', '/scrapping', function() {
+//     $controller = new DefaultController();
+//     $controller->scrapping();
+// }, 'scrapping');
