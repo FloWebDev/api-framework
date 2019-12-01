@@ -19,7 +19,7 @@
 
   <p class="col-12 col-md-12 mx-auto text-center mb-2 p-0 text-danger">
     L'accès est réservé aux administrateurs, modérateurs et rédacteurs du site.<br>
-    Si vous souhaitez obtenir un token pour l'utlisation de l'API, rendez-vous sur : <a href="/token" class="text-dark"><u>Obtenir un token</u></a>
+    Si vous souhaitez obtenir un token pour l'utlisation de l'API, rendez-vous sur : <a href="<?= $router->generate('token'); ?>" class="text-dark"><u>Obtenir un token</u></a>
   </p>
 
     <div class="form-group mb-2">

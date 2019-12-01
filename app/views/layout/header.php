@@ -29,7 +29,6 @@
 </head> 
 
 <body class="body-green"> 
-
     <div class="page-wrapper">
         <!-- ******Header****** -->
         <header id="header" class="header">
@@ -46,24 +45,24 @@
                 
                 <!-- Navbar -->
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item <?php if(empty($_GET['_url'])) : ?>active<?php endif; ?>"><a href="/"><i class="fas fa-home"></i> Accueil</a></li>
+                    <li class="breadcrumb-item <?php if(empty($_GET['_url'])) : ?>active<?php endif; ?>"><a href="<?= $router->generate('home_page'); ?>"><i class="fas fa-home"></i> Accueil</a></li>
                     
                     <?php if(!$user) : ?>
-                    <li class="breadcrumb-item <?php if(!empty($_GET['_url']) && $_GET['_url'] == '/token') : ?>active<?php endif; ?>"><a href="/token"><i class="fas fa-key"></i> Token</a></li>
+                    <li class="breadcrumb-item <?php if(!empty($_GET['_url']) && $_GET['_url'] == '/token') : ?>active<?php endif; ?>"><a href="<?= $router->generate('token'); ?>"><i class="fas fa-key"></i> Token</a></li>
                     <?php endif; ?>
 
                     <?php if($user) : ?>
-                    <li class="breadcrumb-item <?php if(!empty($_GET['_url']) && $_GET['_url'] == '/dashboard') : ?>active<?php endif; ?>"><a href="/dashboard"><i class="fas fa-smile-wink"></i> Dashboard</a></li>
+                    <li class="breadcrumb-item <?php if(!empty($_GET['_url']) && $_GET['_url'] == '/dashboard') : ?>active<?php endif; ?>"><a href="<?= $router->generate('dashboard'); ?>"><i class="fas fa-smile-wink"></i> Dashboard</a></li>
                     <?php endif; ?>
 
                     <?php if($user && $user->getRole()->getCode() == 'ROLE_ADMIN') : ?>
-                    <li class="breadcrumb-item <?php if(!empty($_GET['_url']) && $_GET['_url'] == '/users') : ?>active<?php endif; ?>"><a href="/users"><i class="fas fa-users"></i> Utilisateurs</a></li>
+                    <li class="breadcrumb-item <?php if(!empty($_GET['_url']) && $_GET['_url'] == '/users') : ?>active<?php endif; ?>"><a href="<?= $router->generate('users'); ?>"><i class="fas fa-users"></i> Utilisateurs</a></li>
                     <?php endif; ?>
                     
                     <?php if(!$user) : ?>
-                    <li class="breadcrumb-item <?php if(!empty($_GET['_url']) && $_GET['_url'] == '/login') : ?>active<?php endif; ?>"><a href="/login"><i class="fas fa-sign-in-alt"></i> Connexion</a></li>
+                    <li class="breadcrumb-item <?php if(!empty($_GET['_url']) && $_GET['_url'] == '/login') : ?>active<?php endif; ?>"><a href="<?= $router->generate('sign_in'); ?>"><i class="fas fa-sign-in-alt"></i> Connexion</a></li>
                     <?php else : ?>
-                    <li class="breadcrumb-item <?php if(!empty($_GET['_url']) && $_GET['_url'] == '/logout') : ?>active<?php endif; ?>"><a href="/logout"><i class="fas fa-sign-out-alt"></i> Déconnexion</a></li>
+                    <li class="breadcrumb-item <?php if(!empty($_GET['_url']) && $_GET['_url'] == '/logout') : ?>active<?php endif; ?>"><a href="<?= $router->generate('logout'); ?>"><i class="fas fa-sign-out-alt"></i> Déconnexion</a></li>
                     <?php endif; ?>
                 </ol>
                 

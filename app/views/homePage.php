@@ -4,14 +4,14 @@
                                 <h2 class="section-title">Getting Started</h2>
                                 <div class="section-block">
                                     <p>Cette API a pour objectif de collecter et mettre gratuitement à dispositon des développeurs des contenus divertissants (proverbes, blagues, chuck norris facts, devinettes, vraies et fausses fakes news, etc).</p>
-                                    <a href="/token" class="btn btn-green"><i class="fas fa-medal"></i> Demander un token</a>
+                                    <a href="<?= $router->generate('token'); ?>" class="btn btn-green"><i class="fas fa-medal"></i> Demander un token</a>
                                 </div>
                             </section><!--//doc-section-->
                             <section id="token-jwt-section" class="doc-section">
                                 <h2 class="section-title">Json Web Token</h2>
                                 <div id="step1"  class="section-block">
                                     <h3 class="block-title">&Eacute;tape une</h3>
-                                    <p>Pour utiliser l'API, vous devez au préalable demander l'obtention d'un token (Json Web Token).<br>La procédure est simple, rapide et <strong><u>sans inscription</u></strong>. <a href="/token" class="text-green"><i class="fas fa-external-link-square-alt"></i></a></p>
+                                    <p>Pour utiliser l'API, vous devez au préalable demander l'obtention d'un token (Json Web Token).<br>La procédure est simple, rapide et <strong><u>sans inscription</u></strong>. <a href="<?= $router->generate('token'); ?>" class="text-green"><i class="fas fa-external-link-square-alt"></i></a></p>
                                 </div><!--//section-block-->
                                 <div id="step2"  class="section-block">
                                     <h3 class="block-title">&Eacute;tape deux</h3>
@@ -101,7 +101,7 @@
                                         </div><!--//icon-holder-->
                                         <div class="content">
                                             <h4 class="callout-title">Faites connaître l'API</h4>
-                                            <p>Vous pouvez utliser l'un de ces liens <a href="https://mothereff.in/html-entities" target="_blank"><i class="fab fa-facebook-square"></i> Facebook</a> ou <a href="https://mothereff.in/html-entities" target="_blank"><i class="fab fa-twitter-square"></i> Twitter</a> pour partager le site sur les réseaux sociaux.</p>
+                                            <p>Vous pouvez utliser l'un de ces liens <a href="#" id="facebook_share"><i class="fab fa-facebook-square"></i> Facebook</a> ou <a href="#" id="twitter_share"><i class="fab fa-twitter-square"></i> Twitter</a> pour partager le site sur les réseaux sociaux.</p>
                                         </div><!--//content-->
                                     </div>
                                     

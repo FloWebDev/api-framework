@@ -9,7 +9,7 @@
 <div class="text-dark bg-white mb-3 col-12 mx-auto py-3">
 <!-- Bouton ajout nouveau utilisateurs -->
 <div class="col-12 p-0 mb-2">
-    <a class="btn btn-primary" href="/inscription" role="button"><i class="fas fa-user-plus"></i> Inscription</a>
+    <a class="btn btn-primary" href="<?= $router->generate('sign_up'); ?>" role="button"><i class="fas fa-user-plus"></i> Inscription</a>
 </div>
 
 <?php if(!empty($users)) : ?>
@@ -62,7 +62,7 @@
                             <td>
                             <input type="hidden" value="<?= $token; ?>" name="token">
                             <button type="submit" class="btn btn-dark mt-1"><i class="fas fa-save"></i></button>
-                            <a href="/delete/user/<?= $uUser->getId(); ?>?token=<?= $token; ?>" class="btn btn-danger text-white deleteButton mt-1"><i class="fas fa-trash-alt"></i></a>
+                            <a href="<?= $router->generate('delete_user', ['id' => $uUser->getId()]); ?>?token=<?= $token; ?>" class="btn btn-danger text-white deleteButton mt-1"><i class="fas fa-trash-alt"></i></a>
                             </td>
                             </tr>
                         </form>

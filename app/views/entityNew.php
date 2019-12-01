@@ -7,7 +7,7 @@
 
 <!-- Bouton retour -->
 <div class="px-0 py-2">
-    <a class="btn btn-success text-white" href="/dashboard" role="button">Retour</a>
+    <a class="btn btn-success text-white" href="<?= $router->generate('dashboard'); ?>" role="button">Retour</a>
 </div>
 
 <form class="px-0 py-2" method="POST">

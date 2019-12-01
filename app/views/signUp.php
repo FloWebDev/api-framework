@@ -13,7 +13,7 @@
 
 <!-- Bouton ajout nouveau utilisateurs -->
 <div class="col-12 px-0 py-2 ml-3">
-    <a class="btn btn-success text-white" href="/users" role="button"><i class="fas fa-users"></i> Liste</a>
+    <a class="btn btn-success text-white" href="<?= $router->generate('users'); ?>" role="button"><i class="fas fa-users"></i> Liste</a>
 </div>
 
 <form class="col-12" action="" method="POST">

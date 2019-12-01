@@ -147,6 +147,28 @@ class EntityModel extends CoreModel {
     }
 
     /**
+     * ATTENTION !!!
+     * Permet de purger la table des entités
+     * et remettre l'auto-incrément à zéro
+     * 
+     */ 
+    public function purge()
+    {
+        $result = false;
+
+        $sql = "DELETE from " . self::TABLE_NAME . "; 
+            DELETE from sqlite_sequence WHERE name='" . self::TABLE_NAME . "';";
+        
+        $pdoStatement = PDOS::getPDO()->prepare($sql);
+
+        if ($pdoStatement->execute()) {
+            $result = $pdoStatement->rowCount();
+        }
+
+        return $result;
+    }
+
+    /**
      * Get the value of id
      */ 
     public function getId()

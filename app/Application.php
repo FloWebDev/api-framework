@@ -124,7 +124,15 @@ $router->map( 'POST', '/api/token', function() {
 // match current request url
 $match = $router->match();
 
-// dd($router->getRoutes());
+// Récupération de toutes les routes
+$routes =$router->getRoutes();
+// Création d'un tableau regroupant l'ensemble des routes nommées
+$namedRoutes = array();
+foreach($routes as $route) {
+    $namedRoutes[$route[3]] = $route[1];
+}
+// Transfert l'ensemble des routes en session pour que le CoreController puisse les récupérer
+$_SESSION['namedRoutes'] = $namedRoutes;
 
 // call closure or throw 404 status
 if( is_array($match) && is_callable( $match['target'] ) ) {

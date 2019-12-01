@@ -34,7 +34,7 @@ class DefaultController extends CoreController {
             unset($category);
         }
         
-        $this->assign('pageTitle', 'Page d\'accueil de cette API');
+        $this->assign('pageTitle', 'Light API');
         $this->assign('pageDescription', 'Page d\'accueil de cette API');
         $this->assign('h1Title', 'Documentation API');
         $this->assign('h2Title', 'Documentation API');

@@ -7,9 +7,9 @@
 
 
 <div class="col-12 px-0 py-2">
-    <a class="btn btn-success text-white" href="/new/entity" role="button"><i class="fas fa-plus-circle"></i> Ajouter</a>
+    <a class="btn btn-success text-white" href="<?= $router->generate('new_entity'); ?>" role="button"><i class="fas fa-plus-circle"></i> Ajouter</a>
     <?php if($user && $user->getRole()->getCode() === 'ROLE_ADMIN') : ?>
-    <a class="btn btn-warning text-dark" href="/purge?token=<?= $token; ?>" role="button" id="deletePurge"><i class="fas fa-exclamation-triangle" style="color: red;"></i> Purge</a>
+    <a class="btn btn-warning text-dark" href="<?= $router->generate('purge_entity'); ?>?token=<?= $token; ?>" role="button" id="deletePurge"><i class="fas fa-exclamation-triangle" style="color: red;"></i> Purge</a>
     <?php endif; ?>
 </div>
 
@@ -34,8 +34,8 @@
                 <p class="card-text"><?= nl2br($entity->getContent()); ?></p>
                 <h6 class="card-subtitle mb-2 text-muted">Vote : <?= !empty($entity->getVote()) ? $entity->getVote() : '0'; ?></h6>
                 <?php if($user && in_array($user->getRole()->getCode(), ['ROLE_ADMIN', 'ROLE_MODO'])) : ?>
-                    <a href="/update/entity/<?= $entity->getId() ?>" class="card-link text-dark"><i class="fas fa-edit"></i> Modifier</a>
-                    <a href="/delete/entity/<?= $entity->getId() ?>?token=<?= $token; ?>" class="card-link text-dark deleteButton"><i class="fas fa-trash-alt"></i> Suppprimer</a>
+                    <a href="<?= $router->generate('update_entity', ['id' => $entity->getId()]); ?>" class="card-link text-dark"><i class="fas fa-edit"></i> Modifier</a>
+                    <a href="<?= $router->generate('delete_entity', ['id' => $entity->getId()]); ?>?token=<?= $token; ?>" class="card-link text-dark deleteButton"><i class="fas fa-trash-alt"></i> Suppprimer</a>
                 <?php endif; ?>
             </div>
         </div>

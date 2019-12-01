@@ -205,7 +205,7 @@ class EntityController extends CoreController {
     }
 
     /**
-     * Permet de créer une nouvelle entrée
+     * Permet purger de manière irréversible la table des entités
      * 
      */
     public function purge() {
@@ -214,7 +214,8 @@ class EntityController extends CoreController {
         // Vérification du token de session
         SecurityController::checkToken();
 
-        // TODO
+        $instance =new EntityModel();
+        $instance->purge();
 
         $this->flash('Purge terminée', 1);
         $this->redirect('/dashboard');
