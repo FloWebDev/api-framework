@@ -343,7 +343,7 @@ class DefaultController extends CoreController {
         // foreach($entityArray as $content) {
         //     $newEntity = new EntityModel();
         //     $newEntity->setContent($content);
-        //     $newEntity->setCategoryId('Devinette');
+        //     $newEntity->setCategoryId(3);
         //     $result = $newEntity->new();
         // }
         

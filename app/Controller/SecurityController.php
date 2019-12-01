@@ -239,7 +239,7 @@ class SecurityController extends CoreController {
      * 
      */
     public static function checkToken() {
-        if(!empty($_GET['token'] || !empty($_POST['token']))) {
+        if(!empty($_GET['token']) || !empty($_POST['token'])) {
             $token = !empty($_GET['token']) ? $_GET['token'] : $_POST['token'];
 
             if ($token == $_SESSION['token']) {
