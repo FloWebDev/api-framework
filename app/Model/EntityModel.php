@@ -156,13 +156,16 @@ class EntityModel extends CoreModel {
     {
         $result = false;
 
-        $sql = "DELETE from " . self::TABLE_NAME . "; 
-            DELETE from sqlite_sequence WHERE name='" . self::TABLE_NAME . "';";
+        $sql = "DELETE FROM " . self::TABLE_NAME . ";";
         
         $pdoStatement = PDOS::getPDO()->prepare($sql);
 
         if ($pdoStatement->execute()) {
             $result = $pdoStatement->rowCount();
+
+            // Seconde requête pour mettre à zéro l'auto-incrément
+            $sql = "DELETE FROM sqlite_sequence WHERE name='" . self::TABLE_NAME . "';";
+            PDOS::getPDO()->exec($sql);
         }
 
         return $result;
