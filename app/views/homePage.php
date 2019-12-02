@@ -3,7 +3,7 @@
                             <section id="getting-started-section" class="doc-section">
                                 <h2 class="section-title">Getting Started</h2>
                                 <div class="section-block">
-                                    <p>Cette API a pour objectif de collecter et mettre gratuitement à dispositon des développeurs des contenus divertissants (proverbes, blagues, chuck norris facts, devinettes, vraies et fausses fakes news, etc).</p>
+                                    <p>Cette API vise à de collecter et mettre gratuitement à dispositon des développeurs des contenus variés (proverbes, blagues, chuck norris facts, devinettes, fakes news, etc) pour leurs projets ou besoin de fixtures.</p>
                                     <a href="<?= $router->generate('token'); ?>" class="btn btn-green"><i class="fas fa-medal"></i> Demander un token</a>
                                 </div>
                             </section><!--//doc-section-->
