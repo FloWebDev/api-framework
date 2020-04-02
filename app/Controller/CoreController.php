@@ -14,7 +14,10 @@ abstract class CoreController {
      * Constructeur du CoreController
      */
     public function __construct() {
-        
+
+        // Initialisation du CORS
+        $this->initCors();
+
         if(!empty($_SESSION['namedRoutes'])) {
             $this->namedRoutes = $_SESSION['namedRoutes'];
         }
@@ -36,8 +39,9 @@ abstract class CoreController {
     protected function showJson($array)
     {
         // Autorise l'accès à la ressource depuis n'importe quel autre domaine
-        header("Access-Control-Allow-Origin: *");
-        header('Access-Control-Allow-Credentials: true');
+        // PLUS UTILE DEPUIS CREATION METHODE setCors() dans le __construct
+        // header("Access-Control-Allow-Origin: *");
+        // header('Access-Control-Allow-Credentials: true');
         // Indique au navigateur que la réponse est au format JSON
         header('Content-Type: application/json');
         // Retourne une réponse au format JSON
@@ -152,5 +156,34 @@ abstract class CoreController {
         }
 
         return $url;
+    }
+
+    /**
+     * Permet d'initialiser le «  Cross-origin resource sharing » (CORS) ou « partage des ressources entre origines multiples »
+     * @link https://stackoverflow.com/questions/8719276/cross-origin-request-headerscors-with-php-headers
+     * 
+     * @return void
+     */
+    private function initCors() {
+        // Allow from any origin
+        if (isset($_SERVER['HTTP_ORIGIN'])) {
+            header('Access-Control-Allow-Origin: ' . $_SERVER['HTTP_ORIGIN']);
+            header('Access-Control-Allow-Credentials: true');
+            // Tell client that this pre-flight info is valid for 1 day
+            header('Access-Control-Max-Age: 86400');
+        }
+
+        // Access-Control headers are received during OPTIONS requests
+        if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
+            if (isset($_SERVER['HTTP_ACCESS_CONTROL_REQUEST_METHOD'])) {
+                header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
+            }
+
+            if (isset($_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS'])) {
+                header('Access-Control-Allow-Headers: ' . $_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS']);
+            }
+
+            exit;
+        }
     }
 }
