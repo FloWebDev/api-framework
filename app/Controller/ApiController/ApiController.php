@@ -143,6 +143,8 @@ class ApiController extends CoreController {
             // Génération d'un index aléatoire
             $index = random_int(0, (count($entities)-1));
 
+            $entity = $entities[$index];
+
             $result[] = [
                 'id' => intval($entity->getId()),
                 'content' => $entity->getContent(),
